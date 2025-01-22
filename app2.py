@@ -70,9 +70,6 @@ if st.sidebar.button('🔍 Predict'):
     <div class='prediction'>
         <h3 style="color: black; margin-bottom: 10px;">Model Predictions:</h3>
         <ul style="list-style-type: none; padding: 0; margin: 0;">
-            <li style="padding: 10px; background-color: #e9f7ef; border-radius: 5px; margin-bottom: 5px; color: black;">
-                <strong>KMeans:</strong> {kmeans_cluster}
-            </li>
             <li style="padding: 10px; background-color: #d8eafd; border-radius: 5px; margin-bottom: 5px; color: black;">
                 <strong>Logistic Regression:</strong> {log_reg_cluster}
             </li>
