@@ -9,6 +9,7 @@ svm_model = joblib.load('svm_model.pkl')
 dt_model = joblib.load('decision_tree_model.pkl')
 gb_model = joblib.load('gradient_boosting_model.pkl')
 knn_model = joblib.load('knn_model.pkl') 
+kmeans_model = joblib.load('kmeans_model.pkl')
 
 # Load the scaler used during training
 scaler = joblib.load('scaler.pkl')
@@ -56,6 +57,7 @@ if st.sidebar.button('🔍 Predict'):
     dt_cluster = predict_cluster(dt_model, recency, frequency, monetary)
     gb_cluster = predict_cluster(gb_model, recency, frequency, monetary)
     knn_cluster = predict_cluster(knn_model, recency, frequency, monetary)  # Predict with KNN model
+    kmeans_cluster = predict_cluster(kmeans_model, recency, frequency, monetary)
 
     # Cluster labels
     cluster_mapping = {
@@ -70,6 +72,9 @@ if st.sidebar.button('🔍 Predict'):
     <div class='prediction'>
         <h3 style="color: black; margin-bottom: 10px;">Model Predictions:</h3>
         <ul style="list-style-type: none; padding: 0; margin: 0;">
+            <li style="padding: 10px; background-color: #e9f7ef; border-radius: 5px; margin-bottom: 5px; color: black;">
+                <strong>KMeans:</strong> {kmeans_cluster}
+            </li>
             <li style="padding: 10px; background-color: #d8eafd; border-radius: 5px; margin-bottom: 5px; color: black;">
                 <strong>Logistic Regression:</strong> {log_reg_cluster}
             </li>
@@ -87,10 +92,11 @@ if st.sidebar.button('🔍 Predict'):
             </li>
             <li style="padding: 10px; background-color: #e9f7ef; border-radius: 5px; margin-bottom: 5px; color: black;">
                 <strong>K-Nearest Neighbors:</strong> {knn_cluster}
-            </li>
+            </li>  
         </ul>
     </div>
     """.format(
+        kmeans_cluster=cluster_mapping[kmeans_cluster],
         log_reg_cluster=cluster_mapping[log_reg_cluster],
         rf_cluster=cluster_mapping[rf_cluster],
         svm_cluster=cluster_mapping[svm_cluster],
