@@ -41,9 +41,9 @@ st.markdown("#### Predict customer segments based on Recency, Frequency, and Mon
 
 # Sidebar Input
 st.sidebar.header('🔧 Input Parameters')
-recency = st.sidebar.number_input('Recency (Days since last purchase)', min_value=0, max_value=10000, value=0, step=1)
-frequency = st.sidebar.number_input('Frequency (Total number of purchases)', min_value=0, max_value=10000, value=0, step=1)
-monetary = st.sidebar.number_input('Monetary (Total spent)', min_value=0, max_value=10000, value=0, step=1)
+recency = st.sidebar.number_input('Recency (Days since last purchase)', value=0, step=1)
+frequency = st.sidebar.number_input('Frequency (Total number of purchases)', value=0, step=1)
+monetary = st.sidebar.number_input('Monetary (Total spent)', value=0, step=1)
 
 # Prediction Button
 if st.sidebar.button('🔍 Predict'):
