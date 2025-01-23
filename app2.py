@@ -21,7 +21,7 @@ def predict_cluster(model, recency, frequency, monetary):
     return cluster[0]
 
 # Streamlit UI with styling
-st.set_page_config(page_title="Customer Segmentation Predictor", page_icon=":bar_chart:", layout="wide")
+st.set_page_config(page_title="Customer Segmentation Classifier", page_icon=":bar_chart:", layout="wide")
 
 # Custom CSS styles
 st.markdown("""
@@ -36,18 +36,18 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Title and Header
-st.title('📊 Customer Segmentation Predictor')
-st.markdown("#### Predict customer segments based on Recency, Frequency, and Monetary values.")
+st.title('📊 Customer Segmentation Classifier')
+st.markdown("#### Classify customer segments based on Recency, Frequency, and Monetary values.")
 
 # Sidebar Input
 st.sidebar.header('🔧 Input Parameters')
 recency = st.sidebar.number_input('Recency (Days since last purchase)', value=0, step=1)
 frequency = st.sidebar.number_input('Frequency (Total number of purchases)', value=0, step=1)
-monetary = st.sidebar.number_input('Monetary (Total spent)', value=0, step=1)
+monetary = st.sidebar.number_input('Monetary (Total spent $)', value=0, step=1)
 
 # Prediction Button
-if st.sidebar.button('🔍 Predict'):
-    st.subheader("📌 Predictions for the Given Customer")
+if st.sidebar.button('🔍 Classify'):
+    st.subheader("📌 Classifications for the Given Customer")
     
     # Predict clusters
     log_reg_cluster = predict_cluster(log_reg_model, recency, frequency, monetary)
@@ -68,7 +68,7 @@ if st.sidebar.button('🔍 Predict'):
     # Display model predictions
     st.markdown("""
     <div class='prediction'>
-        <h3 style="color: black; margin-bottom: 10px;">Model Predictions:</h3>
+        <h3 style="color: black; margin-bottom: 10px;">Model Classifications:</h3>
         <ul style="list-style-type: none; padding: 0; margin: 0;">
             <li style="padding: 10px; background-color: #d8eafd; border-radius: 5px; margin-bottom: 5px; color: black;">
                 <strong>Logistic Regression:</strong> {log_reg_cluster}
@@ -103,7 +103,7 @@ if st.sidebar.button('🔍 Predict'):
     # Final Prediction
     clusters = [log_reg_cluster, rf_cluster, svm_cluster, dt_cluster, gb_cluster, knn_cluster]
     final_cluster = max(set(clusters), key=clusters.count)
-    st.markdown(f"### 🎯 Final Prediction: **{cluster_mapping[final_cluster]}**")
+    st.markdown(f"### 🎯 Final Classification: **{cluster_mapping[final_cluster]}**")
 
 # Footer
 st.markdown("<hr>", unsafe_allow_html=True)
